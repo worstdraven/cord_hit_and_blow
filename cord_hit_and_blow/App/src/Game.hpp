@@ -13,27 +13,27 @@ public:
 	void draw() const override;
 
 private:
+	Font font{ 12, Typeface::CJK_Regular_JP };
 
-	// ブロックのサイズ
-	static constexpr Size BrickSize{ 40, 20 };
+	Array<String> notes{
+		U"C",
+		U"D",
+		U"E",
+		U"F",
+		U"G",
+		U"H",
+		U"A",
+		U"B",
+	};
 
-	// ボールの速さ
-	static constexpr double BallSpeed = 480.0;
+	Array<Rect> slots{
+		Rect{ Arg::center(Scene::Width() / 4, 300), 80, 80},
+		Rect{ Arg::center(Scene::Width() / 4 * 2, 300), 80, 80},
+		Rect{ Arg::center(Scene::Width() / 4 * 3, 300), 80, 80},
+	};
 
-	// ボールの速度
-	Vec2 m_ballVelocity{ 0, -BallSpeed };
-
-	// ボール
-	Circle m_ball{ 400, 400, 8 };
-
-	// ブロックの配列
-	Array<Rect> m_bricks;
-
-	// 現在のゲームのスコア
-	int32 m_score = 0;
+	Array<String> slotNotes;
 
 	// ブロックを壊したときの効果音
 	Audio m_brickSound{ GMInstrument::Woodblock, PianoKey::C5, 0.2s, 0.1s };
-
-	Rect getPaddle() const;
 };
